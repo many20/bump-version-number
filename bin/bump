@@ -1,0 +1,85 @@
+#!/usr/bin/env node
+
+const path = require("path");
+const commander = require("commander");
+const { BumpVersion, loadJSON, saveJSON } = require("..");
+
+const workingDir = process.cwd();
+
+var pkg = require(process.cwd() + "/package.json");
+
+commander.program
+  .name("bump")
+  .description("Bump version in package.json")
+  .version(require("../package.json").version)
+  .option(
+    "-f, --file",
+    "json file to bump version in (package.json by default)",
+    "package.json"
+  )
+  .option(
+    "-k, --key <key>",
+    "json key to bump version in (version by default)",
+    "version"
+  )
+  .option("-v, --verbose", "")
+  .option("-M, --major", "major +1")
+  .option("-m, --minor", "minor +1")
+  .option("-p, --patch", "patch +1")
+  .option("-b, --build", "build +1")
+  .option("-s, --setversion <setversion >", "set version")
+  .action((args) => {
+    console.log(`current version in package.json is ${pkg.version}`);
+
+    if (
+      !args.major &&
+      !args.minor &&
+      !args.patch &&
+      !args.build &&
+      !args.setversion 
+    ) {
+      console.error(
+        ">> No version bump option specified. Use -m, -p, -b or specify a version."
+      );
+      process.exit(1);
+    }
+
+    const filePath = path.resolve(workingDir, args.file);
+    const json = loadJSON(filePath);
+    if (!json || !json[args.key]) {
+      console.error(
+        `>> No version found in ${filePath} for key "${args.key}"`
+      );
+      process.exit(1);
+    }
+
+    const versionString = args.setversion  || json[args.key];
+    const bumpVersion = new BumpVersion(versionString);
+
+    if (args.major) {
+      if (args.verbose) console.log("Bumping major version");
+      bumpVersion.major();
+    }
+    if (args.minor) {
+      if (args.verbose) console.log("Bumping minor version");
+      bumpVersion.minor();
+    }
+    if (args.patch) {
+      if (args.verbose) console.log("Bumping patch version");
+      bumpVersion.patch();
+    }
+    if (args.build) {
+      if (args.verbose) console.log("Bumping build version");
+      bumpVersion.build();
+    }
+
+    const newVersion = bumpVersion.toString();
+
+    saveJSON(filePath, {
+      ...json,
+      [args.key]: newVersion,
+    });
+
+    console.log(`new version in package.json is ${newVersion}`);
+  })
+  .parse(process.argv);

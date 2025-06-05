@@ -1,0 +1,29 @@
+{
+    "name": "bump-version-number",
+    "description": "bump version number of a semver compliant version string in a file",
+    "version": "1.0.0",
+    "homepage": "https://github.com/many20/bump-version-number",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/many20/bump-version-number.git"
+    },
+    "dependencies": {
+        "semver": "^7.7.2",
+        "commander": "14.0.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.2"
+    },
+    "bugs": {
+        "url": "https://github.com/many20/bump-version-number/issues"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/many20/bump-version-number/blob/master/LICENSE"
+        }
+    ],
+    "bin": {
+        "bump": "bin/bump"
+    }
+}
