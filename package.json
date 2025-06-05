@@ -1,29 +1,39 @@
 {
-    "name": "bump-version-number",
-    "description": "bump version number of a semver compliant version string in a file",
-    "version": "1.0.0",
-    "homepage": "https://github.com/many20/bump-version-number",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/many20/bump-version-number.git"
-    },
-    "dependencies": {
-        "semver": "^7.7.2",
-        "commander": "14.0.0"
-    },
-    "devDependencies": {
-        "@types/node": "^20.11.2"
-    },
-    "bugs": {
-        "url": "https://github.com/many20/bump-version-number/issues"
-    },
-    "licenses": [
-        {
-            "type": "MIT",
-            "url": "https://github.com/many20/bump-version-number/blob/master/LICENSE"
-        }
-    ],
-    "bin": {
-        "bump": "bin/bump"
+  "name": "bump-version-number",
+  "description": "bump version number of a semver compliant version string in a file",
+  "version": "1.0.0",
+  "author": "Mario Adrian",
+  "homepage": "https://github.com/many20/bump-version-number",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/many20/bump-version-number.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "publish": "pnpm publish --access public --dry-run"
+  },
+  "dependencies": {
+    "semver": "^7.7.2",
+    "commander": "14.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.2"
+  },
+  "bugs": {
+    "url": "https://github.com/many20/bump-version-number/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/many20/bump-version-number/blob/master/LICENSE"
     }
+  ],
+  "bin": {
+    "bump": "bin/bump"
+  },
+  "files": [
+    "bin/bump",
+    "index.js"
+  ],
+  "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
 }
