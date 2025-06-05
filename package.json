@@ -10,7 +10,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "publish": "pnpm publish --access public --dry-run"
+    "publish": "pnpm publish --access public"
   },
   "dependencies": {
     "semver": "^7.7.2",
