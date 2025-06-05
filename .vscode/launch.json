@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "Launch CLI Tool",
       "program": "${workspaceFolder}/bin/bump",
-      "args": ["-b"],
+      "args": ["-V"],
 
       "console": "integratedTerminal"
     }

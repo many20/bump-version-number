@@ -22,7 +22,6 @@ commander.program
     "json key to bump version in (version by default)",
     "version"
   )
-  .option("-v, --verbose", "")
   .option("-M, --major", "major +1")
   .option("-m, --minor", "minor +1")
   .option("-p, --patch", "patch +1")
@@ -57,19 +56,16 @@ commander.program
     const bumpVersion = new BumpVersion(versionString);
 
     if (args.major) {
-      if (args.verbose) console.log("Bumping major version");
       bumpVersion.major();
     }
     if (args.minor) {
-      if (args.verbose) console.log("Bumping minor version");
       bumpVersion.minor();
     }
     if (args.patch) {
-      if (args.verbose) console.log("Bumping patch version");
       bumpVersion.patch();
     }
     if (args.build) {
-      if (args.verbose) console.log("Bumping build version");
+
       bumpVersion.build();
     }
 
